@@ -1,0 +1,60 @@
+{
+  "collectionName": "plantas",
+  "info": {
+    "singularName": "planta",
+    "pluralName": "plantas",
+    "displayName": "Planta",
+    "description": "Catálogo de plantas do Jardim Botânico"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome_popular": {
+      "type": "string",
+      "required": true
+    },
+    "nome_cientifico": {
+      "type": "string",
+      "required": true
+    },
+    "descricao": {
+      "type": "text",
+      "required": true
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "descricao_imagem": {
+      "type": "text",
+      "required": true
+    },
+    "audio_descricao": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files", "audios"]
+    },
+    "localizacao_jardim": {
+      "type": "text"
+    },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
+    },
+    "categoria": {
+      "type": "enumeration",
+      "enum": ["Medicinal", "Ornamental", "Nativa", "Exótica", "Alimentícia"]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nome_popular",
+      "required": true
+    }
+  }
+}
