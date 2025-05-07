@@ -1,45 +1,80 @@
 {
+  "kind": "collectionType",
   "collectionName": "plantas",
   "info": {
     "singularName": "planta",
     "pluralName": "plantas",
-    "displayName": "Planta",
-    "description": "Catálogo de plantas do Jardim Botânico"
+    "displayName": "Planta"
   },
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "nome_popular": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "nome_cientifico": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "descricao": {
       "type": "text",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "imagem": {
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "descricao_imagem": {
       "type": "text",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "audio_descricao": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["files", "audios"]
+      "allowedTypes": [
+        "files",
+        "audios"
+      ]
     },
     "localizacao_jardim": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "latitude": {
       "type": "decimal"
@@ -49,7 +84,13 @@
     },
     "categoria": {
       "type": "enumeration",
-      "enum": ["Medicinal", "Ornamental", "Nativa", "Exótica", "Alimentícia"]
+      "enum": [
+        "Medicinal",
+        "Ornamental",
+        "Nativa",
+        "Exótica",
+        "Alimentícia"
+      ]
     },
     "slug": {
       "type": "uid",
