@@ -1,11 +1,16 @@
 export async function fetchAPI(path) {
-  const res = await fetch(`${process.env.STRAPI_API_URL}${path}`);
+  const apiUrl = process.env.STRAPI_API_URL || 'http://localhost:1337';
+  const fullUrl = `${apiUrl}${path}`;
 
+  console.log(fullUrl);
+  
+  const res = await fetch(fullUrl);
+  
   if (!res.ok) {
-    console.error("Erro ao consultar a API: ", res.statusText);
-    throw new Error("Failed to fetch data");
+    console.error("Erro ao buscar dados da API:", res.statusText);
+    throw new Error("Falha ao buscar dados da API");
   }
-  const data = await res.json();
 
-  return data.data
+  const data = await res.json();
+  return data;
 }
