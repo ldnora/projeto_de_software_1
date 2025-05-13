@@ -25,9 +25,6 @@ Visualização de plantas com:
 
 - Nome científico e popular
 - Descrição textual confiável
-- Imagem com descrição de imagem
-- Botão de escuta da descrição via TTS
-- Geração de QR Codes para cada planta, a serem fixados junto às espécies no Jardim
 - Interface administrativa para que colaboradores possam adicionar, editar ou excluir plantas
 - Aplicação responsiva (usável em celular ou computador)
 - Estrutura pensada para futura conversão em PWA (uso offline)
@@ -37,9 +34,6 @@ Visualização de plantas com:
 - Frontend: Next, Tailwind CSS, HTML
 - Backend: Node.js com Strapi
 - Banco de Dados: PostgreSQL
-- TTS: Web Speech API
-- QR Code: Geração automática dos links de cada planta
-- Hospedagem: A definir (ex: Vercel para frontend, Railway/Render/Heroku para backend)
 
 ## 5. Requisitos Funcionais (RF)
 
@@ -61,7 +55,6 @@ Visualização de plantas com:
 
 ## 7. Critérios de Sucesso
 
-- Catálogo funcional e acessível no local via QR Code
 - Funcionários conseguindo cadastrar novas plantas sem auxílio técnico
 - Visitantes satisfeitos com a clareza e acessibilidade das informações
 - Infraestrutura simples e sustentável para manutenção a longo prazo
@@ -79,12 +72,5 @@ Visualização de plantas com:
 #### Checkpoint2
 
 - Modelagem do banco de dados
-- Implementação do painel administrativo
-
-#### Checkpoint3
-
-- Testagem do banco de dados
-- Troca da tecnologia do frontend para Next
-- Início da implementação do frontend
-
-### Etapas Pendentes
+- Implementação do painel administrativo, a qual permite inserir novas plantas ao acervo de forma automática
+- Implementação de um protótipo do frontend, com um template que utiliza de slugs para criar as páginas de forma automática
