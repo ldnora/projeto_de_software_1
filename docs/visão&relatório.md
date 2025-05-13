@@ -4,9 +4,11 @@ Documento de Visão do Produto
 
 Projeto: Catálogo Virtual de Plantas do Jardim Botânico da UFSM
 
-Data: 26/03/2025
+Data: 13/05/2025
 
-Versão: 1.0
+Versão: 2.0
+
+Dupla: Leandro Dalla Nora e Lorenzo Facco Comunello
 
 ## 1. Objetivo do Produto
 
