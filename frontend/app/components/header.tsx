@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="bg-white/50">
       <nav className="container mx-auto flex justify-between items-center py-4">
-        <Link href="/">Our Cool Project</Link>
+        <Link href="/">Jardim Botânico UFSM</Link>
 
         <ul className="flex gap-4">
           {links.map((link) => (

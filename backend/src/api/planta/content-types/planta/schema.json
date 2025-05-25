@@ -4,7 +4,8 @@
   "info": {
     "singularName": "planta",
     "pluralName": "plantas",
-    "displayName": "Planta"
+    "displayName": "Planta",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -94,7 +95,7 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "nome_popular",
+      "targetField": "nome_cientifico",
       "required": true
     }
   }

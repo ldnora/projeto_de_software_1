@@ -18,8 +18,6 @@ async function getPlantas() {
 
   const res = await fetch(url);
 
-  console.log(res)
-
   if (!res.ok) throw new Error("Falha ao carregar as plantas");
 
   const data = await res.json();
@@ -56,7 +54,7 @@ interface PlantaProps {
 function PlantaCard({
   nome_popular,
   nome_cientifico,
-  descricao,
+  descricao_imagem,
   imagem,
   slug,
 }: Readonly<PlantaProps>) {
@@ -71,25 +69,25 @@ function PlantaCard({
     >
       <Image
         src={imageUrl}
-        alt={imagem[0].alternativeText || imagem[0].name}
+        alt={descricao_imagem}
         width={500}
         height={500}
       />
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{imagem[0].name}</h3>
-        <p className="text-gray-600">{descricao}</p>
+        <h3 className="text-xl font-semibold mb-2">{nome_cientifico}</h3>
+        <p className="text-gray-600">{nome_popular}</p>
       </div>
     </Link>
   );
 }
 export default async function Plantas() {
-  const teamMembers = await getPlantas();
+  const plantas = await getPlantas();
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8">Our Team</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.data.map((member: PlantaProps) => (
+        {plantas.data.map((member: PlantaProps) => (
           <PlantaCard key={member.documentId} {...member} />
         ))}
       </div>
