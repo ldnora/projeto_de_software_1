@@ -1,3 +1,5 @@
+// app/planta/page.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 import qs from "qs";
@@ -13,6 +15,9 @@ async function getPlantas() {
       imagem: {
         fields: ["alternativeText", "name", "url"],
       },
+      qrcode: {
+        fields: ["alternativeText", "name", "url"],
+      },
     },
   });
 
@@ -21,8 +26,6 @@ async function getPlantas() {
   if (!res.ok) throw new Error("Falha ao carregar as plantas");
 
   const data = await res.json();
-  // console.log(data);
-
   return data;
 }
 
@@ -34,8 +37,8 @@ interface PlantaProps {
   descricao: string;
   descricao_imagem: string;
   localizacao_jardim: string;
-  latitude: Float16Array;
-  longitude: Float16Array;
+  latitude: number;
+  longitude: number;
   categoria: string;
   slug: string;
   createdAt: string;
@@ -49,6 +52,12 @@ interface PlantaProps {
     name: string;
     url: string;
   }[];
+  qrcode?: {
+    id: number;
+    alternativeText: string;
+    name: string;
+    url: string;
+  } | null;
 }
 
 function PlantaCard({
@@ -57,6 +66,7 @@ function PlantaCard({
   descricao_imagem,
   imagem,
   slug,
+  qrcode,
 }: Readonly<PlantaProps>) {
   const imageUrl = `${
     process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337"
@@ -67,19 +77,26 @@ function PlantaCard({
       href={`/planta/${slug}`}
       className="bg-white rounded-lg shadow-md overflow-hidden"
     >
-      <Image
-        src={imageUrl}
-        alt={descricao_imagem}
-        width={500}
-        height={500}
-      />
+      <Image src={imageUrl} alt={descricao_imagem} width={500} height={500} />
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{nome_cientifico}</h3>
         <p className="text-gray-600">{nome_popular}</p>
+        {qrcode && qrcode.url && (
+          <div className="mt-4">
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337"}${qrcode.url}`}
+              alt={qrcode.alternativeText || "QR Code da planta"}
+              width={150}
+              height={150}
+              className="mx-auto"
+            />
+          </div>
+        )}
       </div>
     </Link>
   );
 }
+
 export default async function Plantas() {
   const plantas = await getPlantas();
 
