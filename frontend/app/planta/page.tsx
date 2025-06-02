@@ -4,7 +4,7 @@ import qs from "qs";
 
 async function getPlantas() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337";
-  const path = process.env.PLANTAS_API_URL ?? "/api/planta";
+  const path = process.env.PLANTAS_API_URL ?? "/api/plantas";
 
   const url = new URL(path, baseUrl);
 

@@ -1,4 +1,4 @@
-# Projeto de extensão em parceria com o Jardim Botânico 
+# Projeto de extensão em parceria com o Jardim Botânico
 
 ## Como rodar o projeto
 
@@ -6,7 +6,7 @@ Entre na pasta `site-jardim-botanico` e rode o comando `docker compose up --buil
 
 ## Requisições
 
-### Requisição para todos os dados da API 
+### Requisição para todos os dados da API
 
 `curl http://localhost:1337/api/planta`
 
@@ -14,4 +14,4 @@ Entre na pasta `site-jardim-botanico` e rode o comando `docker compose up --buil
 
 `curl "http://localhost:1337/api/plantas?filters\[nome_popular\][$eq]=teste"`
 
-`curl "http://localhost:1337/api/plantas?filters\[slug\][$eq]=teste"` 
+`curl "http://localhost:1337/api/plantas?filters\[slug\][$eq]=teste"`
