@@ -4,6 +4,9 @@
 
 import { factories } from '@strapi/strapi';
 import QRCode from 'qrcode';
+import FormData from 'form-data';
+import fetch from 'node-fetch';
+import fs from 'fs';
 
 export default factories.createCoreService('api::planta.planta', ({ strapi }) => ({
   async generateQRCode(slug: string) {
@@ -12,58 +15,50 @@ export default factories.createCoreService('api::planta.planta', ({ strapi }) =>
       populate: '*',
     });
 
-    // Garantir que plantas é array e tem elementos
-    if (!Array.isArray(plantas) || plantas.length === 0) {
-      throw new Error('Planta não encontrada');
-    }
+    if (!plantas.length) throw new Error('Planta não encontrada');
 
     const planta = plantas[0];
-
-    console.log('Planta encontrada:', planta);
-    console.log('Slug recebido:', slug);
-
-    if (!planta) {
-      throw new Error('Planta não encontrada');
-    }
-
-    if (!planta.slug || typeof planta.slug !== 'string') {
-      throw new Error('Slug inválido na planta');
-    }
-
     const url = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/planta/${planta.slug}`;
 
+    // Gera QR code base64 PNG
     const qrCodeBase64 = await QRCode.toDataURL(url, { type: 'image/png' });
-    console.log('QR Code base64 length:', qrCodeBase64.length);
-
     const base64Data = qrCodeBase64.replace(/^data:image\/png;base64,/, '');
-    console.log('Base64 data snippet:', base64Data.slice(0, 30));
-
     const buffer = Buffer.from(base64Data, 'base64');
-    console.log('Buffer length:', buffer.length);
 
-    const file = {
-      //path: 'qrcodes',
-      name: `qrcode_planta_${planta.id}.png`,
-      type: 'image/png',
-      buffer,
-    };
+    // Salva arquivo temporário
+    const tempFilePath = `/tmp/qrcode_planta_${planta.id}.png`;
+    await fs.promises.writeFile(tempFilePath, buffer);
 
-    const uploadedFiles = await strapi.plugin('upload').service('upload').upload({
-      data: {},
-      files: file,
-    });
+    try {
+      // Prepara FormData para upload
+      const form = new FormData();
+      form.append('files', fs.createReadStream(tempFilePath));
+      form.append('ref', 'api::planta.planta');
+      form.append('refId', planta.id.toString());
+      form.append('field', 'qrcode');
 
-    if (!uploadedFiles || uploadedFiles.length === 0) {
-      throw new Error('Erro ao fazer upload do QR code');
+      // Envia para o endpoint REST do Strapi upload
+      const res = await fetch(`${process.env.STRAPI_ADMIN_URL || 'http://localhost:1337'}/api/upload`, {
+        method: 'POST',
+        body: form,
+        headers: form.getHeaders ? form.getHeaders() : {},
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Upload falhou: ${errorText}`);
+      }
+
+      const uploadResponse = await res.json();
+
+      if (!uploadResponse || uploadResponse.length === 0) {
+        throw new Error('Resposta inválida do upload');
+      }
+
+      return uploadResponse[0].url; // URL da imagem do QR code
+    } finally {
+      // Limpa arquivo temporário
+      await fs.promises.unlink(tempFilePath).catch(() => {});
     }
-    console.log('Uploaded files:', uploadedFiles);
-
-    //@ts-ignore
-    await strapi.entityService.update('api::planta.planta', planta.id, {
-      //@ts-ignore
-      data: { qrcode: uploadedFiles[0].id },
-    });
-
-    return uploadedFiles[0].url;
   },
 }));

@@ -8,10 +8,10 @@ export default factories.createCoreController('api::planta.planta', ({ strapi })
   async generateQRCode(ctx) {
     const { slug } = ctx.params;
 
-    console.log('Generating QR Code for slug:', slug);
     if (!slug) {
-      return ctx.badRequest('Slug is required');
+      return ctx.badRequest('Slug é obrigatório');
     }
+
     try {
       const qrcodeUrl = await strapi.service('api::planta.planta').generateQRCode(slug);
       ctx.send({
@@ -19,7 +19,7 @@ export default factories.createCoreController('api::planta.planta', ({ strapi })
         qrcode_url: qrcodeUrl,
       });
     } catch (error: any) {
-      ctx.status = error.status || 404;
+      ctx.status = error.status || 500;
       ctx.send({
         error: error.message || 'Erro ao gerar QR Code',
       });
