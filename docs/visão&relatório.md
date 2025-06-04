@@ -33,7 +33,7 @@ Visualização de plantas com:
 
 ## 4. Tecnologias
 
-- Frontend: Next, Tailwind CSS, HTML
+- Frontend: Next, Chakra UI, HTML
 - Backend: Node.js com Strapi
 - Banco de Dados: PostgreSQL
 
