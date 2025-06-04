@@ -1,9 +1,14 @@
+'use client'
+import { Box, Container, Text } from '@chakra-ui/react'
+
 export default function Footer() {
   return (
-    <footer className="bg-white/50">
-      <div className="container mx-auto flex justify-center items-center py-4">
-        <div>&copy; {new Date().getFullYear()} Jardim Botânico Universidade Federal de Santa Maria</div>
-      </div>
-    </footer>
-  );
+    <Box as="footer" bg="gray.100">
+      <Container maxW="container.xl" py={4} centerContent>
+        <Text fontSize="sm">
+          &copy; {new Date().getFullYear()} Jardim Botânico Universidade Federal de Santa Maria
+        </Text>
+      </Container>
+    </Box>
+  )
 }

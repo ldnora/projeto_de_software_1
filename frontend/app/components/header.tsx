@@ -1,26 +1,38 @@
-import Link from "next/link";
-import NavLink from "./nav-link";
+'use client'
+import { 
+  Box, 
+  Container, 
+  Flex,
+  HStack // Usamos HStack para layout horizontal
+} from '@chakra-ui/react'
+import Link from 'next/link'
+import NavLink from './nav-link'
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/planta", label: "Plantas" },
-  { href: "/about-us", label: "Sobre nós" },
-];
+  { href: '/', label: 'Home' },
+  { href: '/planta', label: 'Plantas' },
+  { href: '/about-us', label: 'Sobre nós' },
+]
 
 export default function Header() {
   return (
-    <header className="bg-white/50">
-      <nav className="container mx-auto flex justify-between items-center py-4">
-        <Link href="/">Jardim Botânico UFSM</Link>
+    <Box as="header" bg="white" opacity={50}>
+      <Container maxW="container.xl" py={4}>
+        <Flex as="nav" justify="space-between" align="center">
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            Jardim Botânico UFSM
+          </Link>
 
-        <ul className="flex gap-4">
-          {links.map((link) => (
-            <NavLink key={link.href} href={link.href}>
-              {link.label}
-            </NavLink>
-          ))}
-        </ul>
-      </nav>
-    </header>
-  );
+          <HStack as="nav">
+            {links.map((link) => (
+              <NavLink key={link.href} href={link.href}>
+                {link.label}
+              </NavLink>
+            ))}
+          </HStack>
+        </Flex>
+      </Container>
+    </Box>
+  )
 }
+
