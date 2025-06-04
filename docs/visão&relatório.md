@@ -4,9 +4,9 @@ Documento de Visão do Produto
 
 Projeto: Catálogo Virtual de Plantas do Jardim Botânico da UFSM
 
-Data: 13/05/2025
+Data: 03/06/2025
 
-Versão: 2.0
+Versão: 3.0
 
 Dupla: Leandro Dalla Nora e Lorenzo Facco Comunello
 
@@ -71,8 +71,15 @@ Visualização de plantas com:
 - Definição das tecnologias utilizadas
 - Elaboração do documento de visão do produto
 
-#### Checkpoint2
+#### Checkpoint 2
 
 - Modelagem do banco de dados
 - Implementação do painel administrativo, a qual permite inserir novas plantas ao acervo de forma automática
-- Implementação de um protótipo do frontend, com um template que utiliza de slugs para criar as páginas de forma automática
+- Implementação de um protótipo do frontend, com um template que utiliza slugs para criar as páginas de forma automática
+
+#### Checkpoint 3 
+
+- Desenvolvimento de uma feature que possibilita criar o QR Code de cada animal cadastrado no acervo do Jardim Botânico, a partir da sua url, o qual é armazenado no banco de dados.
+- O protótipo criado no checkpoint anterior foi refatorado. Antes, era composto por uma página sem nenhuma estilização do conteúdo. Atualmente, o frontend é composto por uma página home, sobre nós, uma página a qual lista uma imagem e o nome científico de todas as espécies cadastradas no banco de dados, além de uma página dedicada a cada uma dessas espécies contendo todas as informações cadastradas. Também consta o rodapé e o cabeçalho da página web.
+- Ao cadastar uma nova espécie no catálogo do Jardim Botâncio, é criado de forma automática uma nova página para a espécie recém cadastrada, a qual contém todas as informações disponíveis no bando de dados, e é criado automaticamente um novo card com a imagem e o nome científico na página que contém todos as espécies do acerdo.
+
