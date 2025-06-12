@@ -16,9 +16,18 @@ export default function NavLink({ href, children }: Readonly<NavLinkProps>) {
     <Link
       as={NextLink}
       href={href}
-      opacity={isActive ? 1 : 0.5}
-      _hover={{ opacity: 1 }}
-      textDecoration="none"
+      px={3}
+      py={2}
+      rounded="md"
+      fontWeight={isActive ? "bold" : "normal"}
+      color={isActive ? "blue.600" : "blue.700"}
+      bg={isActive ? "blue.100" : "transparent"}
+      _hover={{
+        textDecoration: "none",
+        bg: "blue.50",
+        color: "blue.700",
+      }}
+      transition="all 0.2s"
     >
       {children}
     </Link>

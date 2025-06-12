@@ -1,5 +1,6 @@
 import qs from "qs";
 import Image from "next/image";
+import { Box, Heading, Text, Stack } from "@chakra-ui/react";
 
 async function getPlanta(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337";
@@ -19,17 +20,13 @@ async function getPlanta(slug: string) {
 }
 
 export default async function PlantaDetail({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+  const { slug } = params;
 
-  if (!slug) return <p>Nenhuma planta encontrada.</p>;
+  if (!slug) return <Text>Nenhuma planta encontrada.</Text>;
 
   const plantaData = await getPlanta(slug);
 
-  console.log('[slug]/page');
-  console.log(plantaData.slug);
-
-
-  if (!plantaData) return <p>Nenhuma planta encontrada.</p>;
+  if (!plantaData) return <Text>Nenhuma planta encontrada.</Text>;
 
   // Checagem segura para imagem
   let imagemData = null;
@@ -44,36 +41,56 @@ export default async function PlantaDetail({ params }: { params: { slug: string 
     : null;
 
   return (
-    <div className="max-w-2xl mx-auto my-8 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-2">{plantaData.nome_popular}</h1>
-      <h2 className="text-lg italic text-gray-500 mb-4">{plantaData.nome_cientifico}</h2>
+    <Box maxW="2xl" mx="auto" my={8} p={6} bg="white" rounded="md" boxShadow="md">
+      <Heading as="h1" size="xl" mb={2}>{plantaData.nome_popular}</Heading>
+      <Text as="h2" fontSize="lg" fontStyle="italic" color="gray.500" mb={4}>
+        {plantaData.nome_cientifico}
+      </Text>
       {imageUrl && (
-        <div className="mb-4">
-          <Image
-            src={imageUrl}
-            alt={imagemData.attributes.alternativeText || plantaData.nome_popular}
-            width={500}
-            height={350}
-            className="rounded"
-          />
+        <Box mb={4}>
+          <Box position="relative" w="100%" h="350px" overflow="hidden" rounded="md">
+            <Image
+              src={imageUrl}
+              alt={imagemData.attributes.alternativeText || plantaData.nome_popular}
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 500px"
+            />
+          </Box>
           {imagemData.attributes.alternativeText && (
-            <p className="text-sm text-gray-500">{imagemData.attributes.alternativeText}</p>
+            <Text fontSize="sm" color="gray.500" mt={2}>
+              {imagemData.attributes.alternativeText}
+            </Text>
           )}
-        </div>
+        </Box>
       )}
-      <p className="mb-2"><strong>Descrição:</strong> {plantaData.descricao}</p>
-      <p className="mb-2"><strong>Localização no Jardim:</strong> {plantaData.localizacao_jardim}</p>
-      <p className="mb-2"><strong>Categoria:</strong> {plantaData.categoria}</p>
-      <p className="mb-2"><strong>Slug:</strong> {plantaData.slug}</p>
-      {plantaData.latitude && plantaData.longitude && (
-        <p className="mb-2"><strong>Coordenadas:</strong> {plantaData.latitude}, {plantaData.longitude}</p>
-      )}
-      <div className="mt-4 text-xs text-gray-400">
-        <p><strong>Criada em:</strong> {new Date(plantaData.createdAt).toLocaleString()}</p>
-        <p><strong>Editada em:</strong> {new Date(plantaData.updatedAt).toLocaleString()}</p>
-        <p><strong>Publicada em:</strong> {new Date(plantaData.publishedAt).toLocaleString()}</p>
-        {plantaData.locale && <p><strong>Idioma:</strong> {plantaData.locale}</p>}
-      </div>
-    </div>
+      <Stack mb={4}>
+        <Text><strong>Descrição:</strong> {plantaData.descricao}</Text>
+        <Text><strong>Localização no Jardim:</strong> {plantaData.localizacao_jardim}</Text>
+        <Text><strong>Categoria:</strong> {plantaData.categoria}</Text>
+        <Text><strong>Slug:</strong> {plantaData.slug}</Text>
+        {plantaData.latitude && plantaData.longitude && (
+          <Text>
+            <strong>Coordenadas:</strong> {plantaData.latitude}, {plantaData.longitude}
+          </Text>
+        )}
+      </Stack>
+      <Box mt={4} fontSize="xs" color="gray.400">
+        <Text>
+          <strong>Criada em:</strong> {new Date(plantaData.createdAt).toLocaleString()}
+        </Text>
+        <Text>
+          <strong>Editada em:</strong> {new Date(plantaData.updatedAt).toLocaleString()}
+        </Text>
+        <Text>
+          <strong>Publicada em:</strong> {new Date(plantaData.publishedAt).toLocaleString()}
+        </Text>
+        {plantaData.locale && (
+          <Text>
+            <strong>Idioma:</strong> {plantaData.locale}
+          </Text>
+        )}
+      </Box>
+    </Box>
   );
 }
