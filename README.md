@@ -8,7 +8,7 @@ Entre na pasta `site-jardim-botanico` e rode o comando `docker compose up --buil
 
 ### Requisição para todos os dados da API 
 
-`curl http://localhost:1337/api/planta`
+`curl http://localhost:1337/api/plantas`
 
 ### Requisição para apenas algumas das plantas da API
 
