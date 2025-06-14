@@ -83,25 +83,6 @@ function PlantaCard({
       transition="box-shadow 0.2s"
       _hover={{ boxShadow: "xl" }}
     >
-<<<<<<< HEAD
-      <Image src={imageUrl} alt={descricao_imagem} width={500} height={500} />
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{nome_cientifico}</h3>
-        <p className="text-gray-600">{nome_popular}</p>
-        {qrcode && qrcode.url && (
-          <div className="mt-4">
-            <img
-              src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337"}${qrcode.url}`}
-              alt={qrcode.alternativeText || "QR Code da planta"}
-              width={150}
-              height={150}
-              className="mx-auto"
-            />
-          </div>
-        )}
-      </div>
-    </Link>
-=======
       <Box position="relative" w="full" h="260px" overflow="hidden">
         <Image
           src={imageUrl}
@@ -122,7 +103,6 @@ function PlantaCard({
         <Text color="gray.600">{nome_popular}</Text>
       </Box>
     </LinkBox>
->>>>>>> frontend-chakra
   );
 }
 

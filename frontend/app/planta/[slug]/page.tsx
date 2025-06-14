@@ -31,11 +31,7 @@ export default async function PlantaDetail({ params }: { params: { slug: string 
 
   const plantaData = await getPlanta(slug);
 
-<<<<<<< HEAD
-  if (!plantaData) return <p>Nenhuma planta encontrada.</p>;
-=======
   if (!plantaData) return <Text>Nenhuma planta encontrada.</Text>;
->>>>>>> frontend-chakra
 
   // Checagem segura para imagem
   let imagemData = null;
@@ -83,54 +79,6 @@ export default async function PlantaDetail({ params }: { params: { slug: string 
           )}
         </Box>
       )}
-<<<<<<< HEAD
-      <p className="mb-2">
-        <strong>Descrição:</strong> {plantaData.descricao}
-      </p>
-      <p className="mb-2">
-        <strong>Localização no Jardim:</strong> {plantaData.localizacao_jardim}
-      </p>
-      <p className="mb-2">
-        <strong>Categoria:</strong> {plantaData.categoria}
-      </p>
-      <p className="mb-2">
-        <strong>Slug:</strong> {plantaData.slug}
-      </p>
-      {plantaData.latitude && plantaData.longitude && (
-        <p className="mb-2">
-          <strong>Coordenadas:</strong> {plantaData.latitude}, {plantaData.longitude}
-        </p>
-      )}
-      {qrcodeUrl && (
-        <div className="mt-6">
-          <h3 className="font-semibold mb-2">QR Code da Planta</h3>
-          <img
-            src={qrcodeUrl}
-            alt={qrcodeData?.attributes?.alternativeText || "QR Code da planta"}
-            width={150}
-            height={150}
-            className="mx-auto"
-          />
-        </div>
-      )}
-      <div className="mt-4 text-xs text-gray-400">
-        <p>
-          <strong>Criada em:</strong> {new Date(plantaData.createdAt).toLocaleString()}
-        </p>
-        <p>
-          <strong>Editada em:</strong> {new Date(plantaData.updatedAt).toLocaleString()}
-        </p>
-        <p>
-          <strong>Publicada em:</strong> {new Date(plantaData.publishedAt).toLocaleString()}
-        </p>
-        {plantaData.locale && (
-          <p>
-            <strong>Idioma:</strong> {plantaData.locale}
-          </p>
-        )}
-      </div>
-    </div>
-=======
       <Stack mb={4}>
         <Text><strong>Descrição:</strong> {plantaData.descricao}</Text>
         <Text><strong>Localização no Jardim:</strong> {plantaData.localizacao_jardim}</Text>
@@ -159,6 +107,5 @@ export default async function PlantaDetail({ params }: { params: { slug: string 
         )}
       </Box>
     </Box>
->>>>>>> frontend-chakra
   );
 }
