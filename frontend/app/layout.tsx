@@ -1,26 +1,20 @@
-"use client";
-
-import { ChakraProvider } from "@chakra-ui/react";
+import ChakraProviders from "./ChakraProviders";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
-export default function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <title>Jardim Botânico UFSM</title>
-        <meta
-          name="description"
-          content="Jardim Botânico da Universidade Federal de Santa Maria"
-        />
+        <meta name="description" content="Jardim Botânico da Universidade Federal de Santa Maria" />
       </head>
       <body>
-        <ChakraProvider>
+        <ChakraProviders>
           <Header />
           {children}
           <Footer />
-        </ChakraProvider>
+        </ChakraProviders>
       </body>
     </html>
   );
