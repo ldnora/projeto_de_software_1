@@ -1,7 +1,10 @@
-export default function Home() {
+"use client";
+import { Box, Heading } from "@chakra-ui/react";
+
+export default function HomePage() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Box p={9}>
+      <Heading>Testando Chakra UI</Heading>
+    </Box>
   );
 }
