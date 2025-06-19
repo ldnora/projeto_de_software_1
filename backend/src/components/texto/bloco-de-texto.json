@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_texto_bloco_de_textos",
+  "info": {
+    "displayName": "Bloco de texto"
+  },
+  "options": {},
+  "attributes": {
+    "editor_de_texto": {
+      "type": "richtext"
+    }
+  }
+}
