@@ -1,4 +1,10 @@
 import type { NextConfig } from "next";
+import withMDX from "@next/mdx";
+
+// Habilita o suporte a arquivos .mdx
+const withMdx = withMDX({
+  extension: /\.mdx?$/,
+});
 
 const nextConfig: NextConfig = {
   // Disable eslinting during build
@@ -15,6 +21,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Adiciona suporte a arquivos .mdx na pasta /app, /pages e /components
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 };
 
-export default nextConfig;
+export default withMdx(nextConfig);

@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uss",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uss",
+    "displayName": "Sobre nós",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "zona_dinamica": {
+      "type": "dynamiczone",
+      "components": [
+        "imagens.imagens",
+        "texto.bloco-de-texto",
+        "imagens.banner"
+      ]
+    }
+  }
+}
