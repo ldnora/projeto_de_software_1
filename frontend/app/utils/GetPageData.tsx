@@ -1,5 +1,4 @@
 import qs from "qs";
-import { GiConsoleController } from "react-icons/gi";
 
 export async function getPageData(path: string, nome_pagina: string) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337";
@@ -14,12 +13,7 @@ export async function getPageData(path: string, nome_pagina: string) {
 
   const url = `${baseUrl}${path}?${query}`;
 
-  
-
   const res = await fetch(url, { next: { revalidate: 60 } }); // SSR + ISR se Next 13/14
-  
-  console.log(url);
-  console.log(res);
 
   if (!res.ok) throw new Error(`Falha ao carregar a página "${nome_pagina}"`);
 

@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import rehypeSlug from "rehype-slug";
 import { Heading, Text, Image, List, ListItem } from "@chakra-ui/react";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337";
@@ -12,6 +13,7 @@ export default function BlocoDeTexto({ texto }: { texto: string }) {
       }}
     >
       <ReactMarkdown
+        rehypePlugins={[rehypeSlug]}
         components={{
           h1: ({ node, ...props }) => (
             <Heading as="h1" size="2xl" my={6} {...props} />
