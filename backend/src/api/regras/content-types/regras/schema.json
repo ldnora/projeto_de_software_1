@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "regrass",
+  "info": {
+    "singularName": "regras",
+    "pluralName": "regrass",
+    "displayName": "Regras",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "zona_dinamica": {
+      "type": "dynamiczone",
+      "components": [
+        "texto.bloco-de-texto"
+      ]
+    }
+  }
+}
