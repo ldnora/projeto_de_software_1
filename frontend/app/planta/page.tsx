@@ -9,11 +9,8 @@ import {
   SimpleGrid,
   LinkBox,
   LinkOverlay,
-  Flex,
   Tooltip,
-  Divider,
-  HStack,
-  Stack,
+  Stack
 } from "@chakra-ui/react";
 
 async function getPlantas() {
@@ -25,9 +22,6 @@ async function getPlantas() {
   url.search = qs.stringify({
     populate: {
       imagem: {
-        fields: ["alternativeText", "name", "url"],
-      },
-      qrcode: {
         fields: ["alternativeText", "name", "url"],
       },
     },
@@ -64,12 +58,6 @@ interface PlantaProps {
     name: string;
     url: string;
   }[];
-  qrcode?: {
-    id: number;
-    alternativeText: string;
-    name: string;
-    url: string;
-  } | null;
 }
 
 function PlantaCard({
@@ -79,14 +67,10 @@ function PlantaCard({
   imagem,
   slug,
   categoria,
-  qrcode,
+  // qrcode,
 }: Readonly<PlantaProps>) {
   const imageUrl = 
     `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337"}${imagem[0]?.url ?? ""}`;
-  const qrCodeUrl =
-    qrcode && qrcode.url
-      ? `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337"}${qrcode.url}`
-      : null;
 
   return (
     <LinkBox
@@ -131,19 +115,6 @@ function PlantaCard({
         >
           {categoria}
         </Badge>
-        {qrCodeUrl && (
-          <Tooltip label="QRCode para informações" hasArrow>
-            <Box position="absolute" bottom={2} right={2} bg="whiteAlpha.700" borderRadius="md" p={1}>
-              <Image
-                src={qrCodeUrl}
-                alt="QR Code"
-                width={35}
-                height={35}
-                style={{ objectFit: "contain" }}
-              />
-            </Box>
-          </Tooltip>
-        )}
       </Box>
       <Stack spacing={2} p={6} flex="1">
         <Heading as="h3" size="md" mb={1}>
@@ -153,10 +124,6 @@ function PlantaCard({
         </Heading>
         <Text color="green.700" fontWeight="semibold">
           {nome_popular}
-        </Text>
-        <Divider my={2} />
-        <Text color="gray.600" fontSize="sm" noOfLines={3}>
-          {descricao_imagem}
         </Text>
       </Stack>
     </LinkBox>
