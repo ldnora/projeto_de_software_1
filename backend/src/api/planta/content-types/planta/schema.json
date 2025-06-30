@@ -97,14 +97,6 @@
       "type": "uid",
       "targetField": "nome_popular",
       "required": true
-    },
-    "qrcode": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
     }
   }
 }
