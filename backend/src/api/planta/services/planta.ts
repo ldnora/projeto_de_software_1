@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
 import fs from 'fs';
+import path from 'path'; // Import the 'path' module
 
 export default factories.createCoreService('api::planta.planta', ({ strapi }) => ({
   async generateQRCode(slug: string) {
@@ -16,8 +17,29 @@ export default factories.createCoreService('api::planta.planta', ({ strapi }) =>
     });
 
     if (!plantas.length) throw new Error('Planta não encontrada');
-
+    
     const planta = plantas[0];
+
+    // --- "LAZY DELETION" LOGIC ---
+    try {
+      const uploadPath = path.resolve(process.cwd(), 'public', 'uploads');
+      const filesInDir = await fs.promises.readdir(uploadPath);
+      const prefixToDelete = `qrcode_planta_${planta.id}_`;
+
+      console.log(`Searching for files with prefix: ${prefixToDelete}`);
+
+      const filesToDelete = filesInDir.filter(file => file.startsWith(prefixToDelete));
+      const deletionPromises = filesToDelete.map(file => {
+        const filePath = path.join(uploadPath, file);
+        console.log(`Deleting old QR code file: ${filePath}`);
+        return fs.promises.unlink(filePath);
+      });
+
+      await Promise.all(deletionPromises);
+    } catch (error) {
+      console.error("Could not perform QR code cleanup:", error.message);
+    }
+
     const url = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/planta/${planta.slug}`;
 
     // Gera QR code base64 PNG
