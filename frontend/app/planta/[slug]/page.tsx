@@ -20,7 +20,7 @@ async function getPlanta(slug: string) {
   return data?.data?.[0] || null;
 }
 
-export default async function PlantaDetail({ params }: { params: { slug: string } }) {
+export default async function PlantaDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
   if (!slug) return <Text>Nenhuma planta encontrada.</Text>;
@@ -74,9 +74,6 @@ export default async function PlantaDetail({ params }: { params: { slug: string 
       <Stack spacing={3} mb={6}>
         <Text fontSize="md" color="gray.800">
           <strong>Descrição:</strong> {plantaData.descricao}
-        </Text>
-        <Text fontSize="md" color="gray.700">
-          <strong>Localização no Jardim:</strong> {plantaData.localizacao_jardim}
         </Text>
         {plantaData.latitude && plantaData.longitude && (
           <Text fontSize="md" color="gray.700">
