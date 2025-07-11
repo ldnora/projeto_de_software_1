@@ -67,19 +67,25 @@ Visualização de plantas com:
 
 #### Checkpoint 1
 
-- Definição da ideia do projeto
-- Definição das tecnologias utilizadas
-- Elaboração do documento de visão do produto
+Definição da ideia do projeto
+Definição das tecnologias utilizadas
+Elaboração do documento de visão do produto
 
 #### Checkpoint 2
 
-- Modelagem do banco de dados
-- Implementação do painel administrativo, a qual permite inserir novas plantas ao acervo de forma automática
-- Implementação de um protótipo do frontend, com um template que utiliza slugs para criar as páginas de forma automática
+Modelagem do banco de dados
+Implementação do painel administrativo, a qual permite inserir novas plantas ao acervo de forma automática
+Implementação de um protótipo do frontend, com um template que utiliza slugs para criar as páginas de forma automática
 
 #### Checkpoint 3 
 
-- Desenvolvimento de uma feature que possibilita criar o QR Code de cada animal cadastrado no acervo do Jardim Botânico, a partir da sua url, o qual é armazenado no banco de dados.
-- O protótipo criado no checkpoint anterior foi refatorado. Antes, era composto por uma página sem nenhuma estilização do conteúdo. Atualmente, o frontend é composto por uma página home, sobre nós, uma página a qual lista uma imagem e o nome científico de todas as espécies cadastradas no banco de dados, além de uma página dedicada a cada uma dessas espécies contendo todas as informações cadastradas. Também consta o rodapé e o cabeçalho da página web.
-- Ao cadastar uma nova espécie no catálogo do Jardim Botâncio, é criado de forma automática uma nova página para a espécie recém cadastrada, a qual contém todas as informações disponíveis no bando de dados, e é criado automaticamente um novo card com a imagem e o nome científico na página que contém todos as espécies do acerdo.
+Desenvolvimento de uma feature que possibilita criar o QR Code de cada animal cadastrado no acervo do Jardim Botânico, a partir da sua url, o qual é armazenado no banco de dados.
+O protótipo criado no checkpoint anterior foi refatorado. Antes, era composto por uma página sem nenhuma estilização do conteúdo. Atualmente, o frontend é composto por uma página home, sobre nós, uma página a qual lista uma imagem e o nome científico de todas as espécies cadastradas no banco de dados, além de uma página dedicada a cada uma dessas espécies contendo todas as informações cadastradas. Também consta o rodapé e o cabeçalho da página web.
+Ao cadastar uma nova espécie no catálogo do Jardim Botâncio, é criado de forma automática uma nova página para a espécie recém cadastrada, a qual contém todas as informações disponíveis no bando de dados, e é criado automaticamente um novo card com a imagem e o nome científico na página que contém todos as espécies do acerdo.
 
+#### Checkpoint 4 
+
+Foi feito uma alteração no banco de dados, sendo removido o campo `qrcode`, sendo substituído por uma página própria para a geração dos qrcodes;
+As funcionalidades anteriores da catalogação de novas espécies ao banco de dados foram mantidas, sendo que as páginas foram atualizadas, com um frontend mais amigável, bonito e clean para que o usuário possa navegar pelo site;
+A página "Home" e "Sobre nós" foram atualizadas, em termos de conteúdo, mas foram refatoradas com o uso de zonas dinâmicas ao invés de blocos estáticos que anteriormente eram usados. Com as zonas dinâmicas, os administradores do site do Jardim Botânico podem adicionar conteúdos de texto (no formato markdown) e imagem como bem preferirem, podendo ser intercalados ou não, com o uso de campos de texto e imagens pré-definidos, os quais são reindenizados corretamente no frontend. Esta mesma abordagem foi aplicada a nova página "Regras" que foi criada;
+Os componentes do cabeçalho, liks do cabeçalho e rodapé foram refatorados com um novo layout, cores e estilos, tornando-os mais amigáveis aos usuários do site do JB.
