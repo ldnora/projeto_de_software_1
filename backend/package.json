@@ -13,13 +13,13 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "export": "strapi export -f ./public/uploads/export",
-    "import": "strapi import -f ./public/uploads/export.tar.gz"
+    "export": "strapi export -f ./public/uploads/export --no-encrypt",
+    "import": "strapi import -f /opt/app/public/uploads/export.tar.gz --force --only content"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.3",
     "@strapi/plugin-users-permissions": "5.12.3",
-    "@strapi/strapi": "5.12.3",
+    "@strapi/strapi": "5.18.1",
     "form-data": "^4.0.2",
     "formdata-node": "^6.0.3",
     "node-fetch": "^2.7.0",
